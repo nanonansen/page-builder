@@ -1,6 +1,14 @@
 import React from "react";
+import Button from "../elements/Button";
+import Icon from "../elements/Icon";
+import Section from "../Section";
 
-const Canvas = ({ sidebarActive }) => {
+const Canvas = ({
+  sidebarActive,
+  data,
+  handleAddSection,
+  handleRemoveSection
+}) => {
   return (
     <div
       className={
@@ -8,25 +16,24 @@ const Canvas = ({ sidebarActive }) => {
       }
     >
       <div className="canvas">
-        <h2>Canvas</h2>
-        <section
-          style={{ height: "600px", borderBottom: "1px solid red" }}
-        ></section>
-        <section
-          style={{ height: "600px", borderBottom: "1px solid red" }}
-        ></section>
-        <section
-          style={{ height: "600px", borderBottom: "1px solid red" }}
-        ></section>
-        <section
-          style={{ height: "600px", borderBottom: "1px solid red" }}
-        ></section>
-        <section
-          style={{ height: "600px", borderBottom: "1px solid red" }}
-        ></section>
-        <section
-          style={{ height: "600px", borderBottom: "1px solid red" }}
-        ></section>
+        {data &&
+          data.map((section, index) => (
+            <Section key={index}>
+              {`Section - ${section.name}`}
+              <div className="section__footer">
+                <Button
+                  className="primary rounded large"
+                  onClick={() => handleAddSection(index)}
+                >
+                  <Icon type={"add"}></Icon>
+                </Button>
+              </div>
+
+              {/* <button onClick={() => handleRemoveSection(section.id)}>
+                Remove Section
+              </button> */}
+            </Section>
+          ))}
       </div>
     </div>
   );

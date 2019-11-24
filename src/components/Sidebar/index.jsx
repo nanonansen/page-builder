@@ -3,7 +3,13 @@ import Button from "../elements/Button";
 import SideBarItem from "../SidebarItem";
 import Icon from "../elements/Icon";
 
-const Sidebar = ({ handleSidebarState, sidebarActive }) => {
+const Sidebar = ({
+  handleSidebarState,
+  sidebarActive,
+  data,
+  handleAddSection,
+  handleRemoveSection
+}) => {
   return (
     <div className="sidebar">
       <div
@@ -14,9 +20,18 @@ const Sidebar = ({ handleSidebarState, sidebarActive }) => {
         }
       >
         <div className="sidebar__items">
-          <SideBarItem className="sidebar__item--active " />
-          <SideBarItem className="" />
-          <SideBarItem className="" />
+          {data &&
+            Object.keys(data).map((item, index) => (
+              <SideBarItem
+                key={index}
+                className=""
+                handleRemoveSection={handleRemoveSection}
+                id={data[item].id}
+              />
+            ))}
+          <div>
+            <button onClick={() => handleAddSection()}>Add Item</button>
+          </div>
         </div>
       </div>
       <div className="sidebar__footer">

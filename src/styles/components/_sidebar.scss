@@ -12,8 +12,9 @@
   &__content {
     flex: 1 0 auto;
     transform: translateX(-190px);
-    transition: transform 300ms;
+    transition: transform 300ms $easingNormal;
     .sidebar__item {
+      opacity: 0;
     }
     &--active {
       width: 180px;
@@ -23,7 +24,7 @@
         animation-duration: 300ms;
 
         animation-fill-mode: both;
-        animation-timing-function: ease-in-out;
+        animation-timing-function: $easingNormal;
         @for $i from 1 through 50 {
           &:nth-child(#{$i}) {
             animation-delay: 100ms * $i;

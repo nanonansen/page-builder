@@ -1,0 +1,26 @@
+.btn {
+  background-color: $neutral00;
+  border: 1px solid $neutral20;
+  font-size: 13px; // Todo Refactor to typography.scss
+  line-height: 1;
+  min-height: 24px;
+  padding: 0 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  &:focus,
+  &:active {
+    outline: none;
+  } //Todo add custom Focus State
+  &:hover {
+    background-color: darken($neutral00, 5%);
+  }
+
+  &.primary {
+    background-color: $primary;
+    color: $neutral00;
+    border-color: transparent;
+    &:hover {
+      background-color: darken($primary, 10%);
+    }
+  }
+}

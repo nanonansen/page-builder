@@ -1,0 +1,16 @@
+.user_avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 100px;
+  border: 2px solid $neutral00;
+  overflow: hidden;
+  &:not(:first-child) {
+    margin-left: -8px;
+  }
+  &__image {
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+}

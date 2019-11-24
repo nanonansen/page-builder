@@ -1,0 +1,17 @@
+.sidebar__item {
+  min-height: 80px;
+  padding: 8px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  border: 2px solid $neutral20;
+  cursor: pointer;
+  &:hover {
+    border: 2px solid darken($neutral20, 10%);
+  }
+  &--active {
+    border: 2px solid $primary;
+    &:hover {
+      border-color: $primary;
+    }
+  }
+}

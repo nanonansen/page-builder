@@ -1,0 +1,29 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $neutral00;
+  border-bottom: 1px solid $neutral20;
+  z-index: 3;
+  &__left {
+    .btn {
+      margin-right: 8px;
+    }
+  }
+  &__right {
+    display: flex;
+    align-items: center;
+    .btn {
+      margin-left: 8px;
+    }
+  }
+
+  .users {
+    display: flex;
+  }
+}

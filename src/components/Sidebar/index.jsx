@@ -7,9 +7,10 @@ const Sidebar = ({
   handleSidebarState,
   sidebarActive,
   data,
-  handleAddSection,
   handleRemoveSection
 }) => {
+  console.log("SideBar Data", data);
+
   return (
     <div className="sidebar">
       <div
@@ -21,17 +22,16 @@ const Sidebar = ({
       >
         <div className="sidebar__items">
           {data &&
-            Object.keys(data).map((item, index) => (
+            data.map((item, index) => (
               <SideBarItem
                 key={index}
                 className=""
                 handleRemoveSection={handleRemoveSection}
-                id={data[item].id}
+                id={data.id}
+                data={item}
               />
             ))}
-          <div>
-            <button onClick={() => handleAddSection()}>Add Item</button>
-          </div>
+          <div></div>
         </div>
       </div>
       <div className="sidebar__footer">

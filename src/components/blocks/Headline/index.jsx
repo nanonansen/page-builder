@@ -1,9 +1,9 @@
 import React from "react";
 
-const BlockHeadline = () => {
+const BlockHeadline = ({ content }) => {
   return (
     <div>
-      <h2>Headline Block</h2>
+      <h2 className="heading-2">{content[0].text}</h2>
     </div>
   );
 };

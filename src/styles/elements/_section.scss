@@ -22,10 +22,16 @@
     justify-content: center;
     align-items: center;
     transition: opacity 300ms $easingNormal;
+    &.active {
+      opacity: 1;
+    }
 
     .btn {
-      transform: translateY(200%);
+      transform: translateY(0%);
       transition: transform 300ms $easingNormal;
+      &.active {
+        transform: rotate(45deg);
+      }
     }
   }
 }

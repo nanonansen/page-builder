@@ -1,7 +1,7 @@
 const initialData = {
-  blocks: {
-    1: {
-      id: null,
+  blocks: [
+    {
+      id: 1,
       name: "image",
       content: [
         {
@@ -9,11 +9,21 @@ const initialData = {
             "https://images.unsplash.com/photo-1490773996481-9ff25c7d9484?ixlib=rb-1.2.1&auto=format&fit=crop&w=3450&q=80"
         }
       ]
+    },
+    {
+      id: 2,
+      name: "headline",
+      content: [
+        {
+          text: "This is a Headline"
+        }
+      ]
     }
-  },
+  ],
 
   canvas: {
-    sections: []
+    sections: [],
+    blocks: ["Empty Section"]
   }
 };
 

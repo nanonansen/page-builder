@@ -1,7 +1,7 @@
 import React from "react";
 
-const Section = props => {
-  return <section className="section">{props.children}</section>;
+const Section = ({ children }) => {
+  return <section className="section">{children}</section>;
 };
 
 export default Section;

@@ -38,4 +38,14 @@
       padding: 0;
     }
   }
+  &.rounded {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .icn {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
 }

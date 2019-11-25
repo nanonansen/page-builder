@@ -1,0 +1,27 @@
+.module_selector {
+  opacity: 0;
+  visibility: hidden;
+  background: rgba(0, 0, 0, 0.91);
+  box-shadow: 0 2px 25px 0 rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 88px;
+  left: 50%;
+  width: 600px;
+  transform: translateX(-50%) scale(0);
+  transition: transform 400ms $easingNormal;
+  display: flex;
+  justify-content: flex-start;
+  padding: 32px 0;
+  border-radius: 24px;
+
+  &--active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+  }
+  &__item {
+    flex: 0 0 25%;
+    border: 1px solid #292929;
+    padding: 32px;
+  }
+}

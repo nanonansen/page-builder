@@ -68,7 +68,12 @@ const Icon = props => {
       );
     case "add":
       return (
-        <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className={classNames("icn", className)}
+          width="15"
+          height="15"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <g
             stroke="#FFF"
             fill="none"

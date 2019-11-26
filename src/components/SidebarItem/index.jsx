@@ -1,16 +1,16 @@
 import React from "react";
 import classNames from "classnames";
 
-const SideBarItem = props => {
-  const { className, handleRemoveSection, data } = props;
-  console.log("SideBarItem", data);
+import { SortableElement } from "react-sortable-hoc";
 
-  return (
-    <div className={classNames("sidebar__item", className)}>
-      <div>{data.name}</div>
-      <button onClick={() => handleRemoveSection(data.id)}>remove</button>
-    </div>
-  );
-};
+const SideBarItem = SortableElement(props => {
+    const { className, handleRemoveSection, id, value } = props;
+    return (
+        <div className={classNames("sidebar__item", className)}>
+            <div>{value.name}</div>
+            <button onClick={() => handleRemoveSection(id)}>remove</button>
+        </div>
+    );
+});
 
 export default SideBarItem;

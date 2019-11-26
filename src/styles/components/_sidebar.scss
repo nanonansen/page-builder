@@ -1,53 +1,53 @@
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: calc(100vh - 96px); // Todo remove fixed Header Size
-  position: fixed;
-  top: 96px;
-  padding: 0px 32px 32px 0;
-  flex: 1 0 auto;
-  z-index: 2;
-
-  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 96px); // Todo remove fixed Header Size
+    position: fixed;
+    top: 96px;
+    padding: 0px 32px 32px 0;
     flex: 1 0 auto;
-    transform: translateX(-190px);
-    transition: transform 300ms $easingNormal;
-    .sidebar__item {
-      opacity: 0;
-    }
-    &--active {
-      width: 180px;
-      transform: translateX(0px);
-      .sidebar__item {
-        animation-name: animateIn;
-        animation-duration: 300ms;
+    z-index: 2;
 
-        animation-fill-mode: both;
-        animation-timing-function: $easingNormal;
-        @for $i from 1 through 50 {
-          &:nth-child(#{$i}) {
-            animation-delay: 100ms * $i;
-          }
+    &__content {
+        flex: 1 0 auto;
+        transform: translateX(-190px);
+        transition: transform 300ms $easingNormal;
+        .sidebar__item {
+            opacity: 0;
         }
-      }
-    }
-  }
+        &--active {
+            width: 180px;
+            transform: translateX(0px);
+            .sidebar__item {
+                animation-name: animateIn;
+                animation-duration: 0ms;
 
-  &__footer {
-    .btn {
-      margin-right: 8px;
+                animation-fill-mode: both;
+                animation-timing-function: $easingNormal;
+                @for $i from 1 through 50 {
+                    &:nth-child(#{$i}) {
+                        animation-delay: 100ms * $i;
+                    }
+                }
+            }
+        }
     }
-  }
+
+    &__footer {
+        .btn {
+            margin-right: 8px;
+        }
+    }
 }
 
 @keyframes animateIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%);
-  }
+    0% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
 
-  100% {
-    opacity: 1;
-  }
+    100% {
+        opacity: 1;
+    }
 }

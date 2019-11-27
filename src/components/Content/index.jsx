@@ -19,6 +19,7 @@ const Content = props => {
     const [data, setData] = useState(initalData);
     const [sidebarActive, setSidebarActive] = useState(true);
     const [moduleSelectorId, setModuleSelectorId] = useState(null);
+    const [inspectorId, setInspectorId] = useState(null);
     const handleSidebarState = () => {
         setSidebarActive(!sidebarActive);
     };
@@ -79,6 +80,41 @@ const Content = props => {
             setModuleSelectorId(sectionId);
         }
     };
+    const handleInspectorId = sectionId => {
+        console.log("handleInspectorId");
+
+        if (inspectorId === sectionId) {
+            setInspectorId(null);
+        } else {
+            setInspectorId(sectionId);
+        }
+    };
+    const handleStylesUpdate = (color, sectionId) => {
+        console.log("handleStylesUpdate", color.hex, sectionId);
+        //clone current State
+        const oldState = JSON.parse(JSON.stringify(data));
+
+        // find Section to Update
+        let selectedSection = data.canvas.blocks.filter(
+            block => block.id === sectionId
+        );
+
+        // Deep Clone Block Object
+        const newSection = JSON.parse(JSON.stringify(selectedSection));
+        const newSectionObj = Object.assign(...newSection);
+        newSectionObj.styles.backgroundColor = color.hex;
+        console.log("newSectionObj", newSectionObj);
+        oldState.canvas.blocks.map((block, index) => {
+            if (block.id === sectionId) {
+                oldState.canvas.blocks[index] = newSectionObj;
+                setData(oldState);
+                return;
+            }
+        });
+        console.log("data", data);
+        // Add Block to Blocks Array at selected Index
+        // oldState.canvas.blocks.splice(sectionIndex, 0, { ...newBlockObj });
+    };
 
     if (data) {
         return (
@@ -101,6 +137,9 @@ const Content = props => {
                     handleRemoveSection={handleRemoveSection}
                     handleModuleSelector={handleModuleSelector}
                     moduleSelectorId={moduleSelectorId}
+                    handleInspectorId={handleInspectorId}
+                    inspectorId={inspectorId}
+                    handleStylesUpdate={handleStylesUpdate}
                 />
             </div>
         );

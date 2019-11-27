@@ -8,7 +8,10 @@ const Canvas = props => {
         blocks,
         handleAddSection,
         handleModuleSelector,
-        moduleSelectorId
+        moduleSelectorId,
+        handleInspectorId,
+        inspectorId,
+        handleStylesUpdate
     } = props;
     return (
         <div
@@ -23,11 +26,15 @@ const Canvas = props => {
                             <Section
                                 key={section.id}
                                 moduleSelectorId={moduleSelectorId}
+                                handleInspectorId={handleInspectorId}
+                                inspectorId={inspectorId}
                                 section={section}
                                 handleModuleSelector={handleModuleSelector}
                                 blocks={blocks}
                                 index={index}
                                 handleAddSection={handleAddSection}
+                                styles={section.styles}
+                                handleStylesUpdate={handleStylesUpdate}
                             ></Section>
                         );
                     })}

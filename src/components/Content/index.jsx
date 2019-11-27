@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import ThemeContext from "../ThemeContext";
 import uuidv4 from "uuid";
 import Sidebar from "../Sidebar";
 import Canvas from "../Canvas";
@@ -102,18 +103,17 @@ const Content = props => {
         // Deep Clone Block Object
         const newSection = JSON.parse(JSON.stringify(selectedSection));
         const newSectionObj = Object.assign(...newSection);
+        //Update Color Style
         newSectionObj.styles.backgroundColor = color.hex;
-        console.log("newSectionObj", newSectionObj);
+
+        //update State with new Section Object
         oldState.canvas.blocks.map((block, index) => {
             if (block.id === sectionId) {
                 oldState.canvas.blocks[index] = newSectionObj;
-                setData(oldState);
-                return;
+                return setData(oldState);
             }
+            return null;
         });
-        console.log("data", data);
-        // Add Block to Blocks Array at selected Index
-        // oldState.canvas.blocks.splice(sectionIndex, 0, { ...newBlockObj });
     };
 
     if (data) {

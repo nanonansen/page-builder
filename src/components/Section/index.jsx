@@ -50,14 +50,13 @@ export default Section;
 const Inspector = ({ styles, handleStylesUpdate, sectionId }) => {
     const [color, setColor] = useState(null);
     useEffect(() => {
-        {
-            Object.keys(styles).map(key => {
-                if (key === "backgroundColor") {
-                    setColor(styles[key]);
-                }
-            });
-        }
-    }, []);
+        Object.keys(styles).map(key => {
+            if (key === "backgroundColor") {
+                return setColor(styles[key]);
+            }
+            return null;
+        });
+    }, [styles]);
     const handleChangeComplete = color => {
         console.log("onChangeComplete");
         setColor(color);
@@ -73,8 +72,4 @@ const Inspector = ({ styles, handleStylesUpdate, sectionId }) => {
             )}
         </div>
     );
-};
-
-const Input = ({ value }) => {
-    return <input value={value} type="text" />;
 };

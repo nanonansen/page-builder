@@ -14,23 +14,23 @@
         transform: translateX(-190px);
         transition: transform 300ms $easingNormal;
         .sidebar__item {
-            opacity: 0;
+            opacity: 1;
         }
         &--active {
             width: 180px;
             transform: translateX(0px);
-            .sidebar__item {
-                animation-name: animateIn;
-                animation-duration: 0ms;
+            // .sidebar__item {
+            //     animation-name: animateIn;
+            //     animation-duration: 0ms;
 
-                animation-fill-mode: both;
-                animation-timing-function: $easingNormal;
-                @for $i from 1 through 50 {
-                    &:nth-child(#{$i}) {
-                        animation-delay: 100ms * $i;
-                    }
-                }
-            }
+            //     animation-fill-mode: both;
+            //     animation-timing-function: $easingNormal;
+            //     @for $i from 1 through 50 {
+            //         &:nth-child(#{$i}) {
+            //             animation-delay: 100ms * $i;
+            //         }
+            //     }
+            // }
         }
     }
 

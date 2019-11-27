@@ -34,7 +34,7 @@ const Content = props => {
     };
 
     // Add Section
-    const handleAddSection = (sectionIndex, blockId) => {
+    const handleAddSection = (sectionIndex, blockId, ref) => {
         // Reset ModuleSelector
         setModuleSelectorId(null);
 
@@ -80,27 +80,31 @@ const Content = props => {
         }
     };
 
-    return (
-        <div className={props.className}>
-            <Sidebar
-                handleSidebarState={handleSidebarState}
-                sidebarActive={sidebarActive}
-                items={data.canvas.blocks}
-                handleAddSection={handleAddSection}
-                handleRemoveSection={handleRemoveSection}
-                onSortEnd={onSortEnd}
-            />
-            <Canvas
-                sidebarActive={sidebarActive}
-                data={data.canvas.blocks}
-                blocks={data.blocks}
-                handleAddSection={handleAddSection}
-                handleRemoveSection={handleRemoveSection}
-                handleModuleSelector={handleModuleSelector}
-                moduleSelectorId={moduleSelectorId}
-            />
-        </div>
-    );
+    if (data) {
+        return (
+            <div className={props.className}>
+                <Sidebar
+                    handleSidebarState={handleSidebarState}
+                    sidebarActive={sidebarActive}
+                    items={data.canvas.blocks}
+                    handleAddSection={handleAddSection}
+                    handleRemoveSection={handleRemoveSection}
+                    onSortEnd={onSortEnd}
+                    lockAxis="y"
+                    helperClass={"on-drag"}
+                />
+                <Canvas
+                    sidebarActive={sidebarActive}
+                    data={data.canvas.blocks}
+                    blocks={data.blocks}
+                    handleAddSection={handleAddSection}
+                    handleRemoveSection={handleRemoveSection}
+                    handleModuleSelector={handleModuleSelector}
+                    moduleSelectorId={moduleSelectorId}
+                />
+            </div>
+        );
+    }
 };
 
 export default Content;

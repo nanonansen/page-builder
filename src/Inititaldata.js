@@ -6,7 +6,7 @@ const initialData = {
             content: [
                 {
                     url:
-                        "https://images.unsplash.com/photo-1490773996481-9ff25c7d9484?ixlib=rb-1.2.1&auto=format&fit=crop&w=3450&q=80"
+                        "https://c.static-nike.com/a/images/f_auto/w_1920,c_limit/b310c2c3-1164-4b2f-a52f-5d98e8efef7c/nikecom-homepage.jpg"
                 }
             ]
         },
@@ -29,7 +29,7 @@ const initialData = {
                 content: [
                     {
                         url:
-                            "https://images.unsplash.com/photo-1490773996481-9ff25c7d9484?ixlib=rb-1.2.1&auto=format&fit=crop&w=3450&q=80"
+                            "https://c.static-nike.com/a/images/f_auto/w_1920,c_limit/2ab9eb31-1259-4e68-a3d9-c87ec2a9c021/nikecom-homepage.jpg"
                     }
                 ]
             }

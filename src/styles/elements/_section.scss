@@ -1,37 +1,38 @@
 .section {
-  position: relative;
-  overflow: hidden;
-  min-height: 50vh;
-  border-top: 1px solid $neutral20;
-  &:hover {
-    .section__footer {
-      opacity: 1;
+    position: relative;
+    overflow: hidden;
+    min-height: 50vh;
+    border-top: 1px solid $neutral20;
+    padding: 32px 0;
+    &:hover {
+        .section__footer {
+            opacity: 1;
+        }
+        .btn {
+            transform: translateY(0);
+        }
     }
-    .btn {
-      transform: translateY(0);
-    }
-  }
-  &__footer {
-    opacity: 0;
-    position: absolute;
-    bottom: 24px;
-    left: 0;
-    width: 100%;
-    height: 48px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 300ms $easingNormal;
-    &.active {
-      opacity: 1;
-    }
+    &__footer {
+        opacity: 0;
+        position: absolute;
+        bottom: 24px;
+        left: 0;
+        width: 100%;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 300ms $easingNormal;
+        &.active {
+            opacity: 1;
+        }
 
-    .btn {
-      transform: translateY(0%);
-      transition: transform 300ms $easingNormal;
-      &.active {
-        transform: rotate(45deg);
-      }
+        .btn {
+            transform: translateY(0%);
+            transition: transform 300ms $easingNormal;
+            &.active {
+                transform: rotate(45deg);
+            }
+        }
     }
-  }
 }

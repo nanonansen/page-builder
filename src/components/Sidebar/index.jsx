@@ -29,7 +29,8 @@ const Sidebar = SortableContainer(props => {
                             value={item}
                             className=""
                             handleRemoveSection={handleRemoveSection}
-                            id={item.id}
+                            disabled={items.length > 1 ? false : true}
+                            lockToContainerEdges={true}
                         />
                     ))}
                 </div>

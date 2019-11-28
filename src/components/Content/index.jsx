@@ -1,26 +1,20 @@
 import React, { useState } from "react";
-// import ThemeContext from "../ThemeContext";
+import ThemeContext from "../ThemeContext";
 import uuidv4 from "uuid";
 import Sidebar from "../Sidebar";
 import Canvas from "../Canvas";
 
 import initalData from "../../Inititaldata";
 
-const arrayMoveMutate = (array, from, to) => {
-    array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
-};
-
-const arrayMove = (array, from, to) => {
-    array = array.slice();
-    arrayMoveMutate(array, from, to);
-    return array;
-};
+import arrayMove from "../../helper/arrayMove";
 
 const Content = props => {
     const [data, setData] = useState(initalData);
     const [sidebarActive, setSidebarActive] = useState(true);
     const [moduleSelectorId, setModuleSelectorId] = useState(null);
     const [inspectorId, setInspectorId] = useState(null);
+
+    // HandleSidebarState
     const handleSidebarState = () => {
         setSidebarActive(!sidebarActive);
     };
@@ -35,10 +29,11 @@ const Content = props => {
         }));
     };
 
-    // Add Section
-    const handleAddSection = (sectionIndex, blockId, ref) => {
-        // Reset ModuleSelector
+    // Handle Add Section
+    const handleAddSection = (sectionIndex, blockId) => {
+        // hide ModuleSelector and Inspector
         setModuleSelectorId(null);
+        setInspectorId(null);
 
         // create new Unique ID
         const id = uuidv4();
@@ -47,7 +42,9 @@ const Content = props => {
         const oldState = { ...data };
 
         // find Block to add
-        let selectedBlock = data.blocks.filter(block => block.id === blockId);
+        let selectedBlock = oldState.blocks.filter(
+            block => block.id === blockId
+        );
 
         // Deep Clone Block Object
         const newBlock = JSON.parse(JSON.stringify(selectedBlock));
@@ -82,17 +79,15 @@ const Content = props => {
         }
     };
     const handleInspectorId = sectionId => {
-        console.log("handleInspectorId");
-
         if (inspectorId === sectionId) {
             setInspectorId(null);
         } else {
             setInspectorId(sectionId);
         }
     };
-    const handleStylesUpdate = (color, sectionId) => {
-        console.log("handleStylesUpdate", color.hex, sectionId);
-        //clone current State
+    const handleStylesUpdate = (styles, sectionId) => {
+        console.log("handleStylesUpdate", styles, sectionId);
+        // clone current State
         const oldState = JSON.parse(JSON.stringify(data));
 
         // find Section to Update
@@ -104,7 +99,7 @@ const Content = props => {
         const newSection = JSON.parse(JSON.stringify(selectedSection));
         const newSectionObj = Object.assign(...newSection);
         //Update Color Style
-        newSectionObj.styles.backgroundColor = color.hex;
+        newSectionObj.styles = styles;
 
         //update State with new Section Object
         oldState.canvas.blocks.map((block, index) => {
@@ -119,28 +114,32 @@ const Content = props => {
     if (data) {
         return (
             <div className={props.className}>
-                <Sidebar
-                    handleSidebarState={handleSidebarState}
-                    sidebarActive={sidebarActive}
-                    items={data.canvas.blocks}
-                    handleAddSection={handleAddSection}
-                    handleRemoveSection={handleRemoveSection}
-                    onSortEnd={onSortEnd}
-                    lockAxis="y"
-                    helperClass={"on-drag"}
-                />
-                <Canvas
-                    sidebarActive={sidebarActive}
-                    data={data.canvas.blocks}
-                    blocks={data.blocks}
-                    handleAddSection={handleAddSection}
-                    handleRemoveSection={handleRemoveSection}
-                    handleModuleSelector={handleModuleSelector}
-                    moduleSelectorId={moduleSelectorId}
-                    handleInspectorId={handleInspectorId}
-                    inspectorId={inspectorId}
-                    handleStylesUpdate={handleStylesUpdate}
-                />
+                <ThemeContext.Provider value={data}>
+                    <Sidebar
+                        handleSidebarState={handleSidebarState}
+                        sidebarActive={sidebarActive}
+                        items={data.canvas.blocks}
+                        handleAddSection={handleAddSection}
+                        handleRemoveSection={handleRemoveSection}
+                        onSortEnd={onSortEnd}
+                        lockAxis="y"
+                        helperClass={"on-drag"}
+                        hideSortableGhost={true}
+                    />
+
+                    <Canvas
+                        sidebarActive={sidebarActive}
+                        data={data.canvas.blocks}
+                        blocks={data.blocks}
+                        handleAddSection={handleAddSection}
+                        handleRemoveSection={handleRemoveSection}
+                        handleModuleSelector={handleModuleSelector}
+                        moduleSelectorId={moduleSelectorId}
+                        handleInspectorId={handleInspectorId}
+                        inspectorId={inspectorId}
+                        handleStylesUpdate={handleStylesUpdate}
+                    />
+                </ThemeContext.Provider>
             </div>
         );
     }

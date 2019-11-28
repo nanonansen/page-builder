@@ -7,3 +7,9 @@ $neutral100: #111111;
 
 // Easing
 $easingNormal: cubic-bezier(0.23, 1, 0.32, 1);
+
+// Shadow
+@mixin elevateNormal {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.16),
+        0 2px 16px 0 rgba(0, 0, 0, 0.04);
+}

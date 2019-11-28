@@ -17,8 +17,8 @@
         }
     }
     &.on-drag {
-        cursor: move;
-        border: 2px solid $neutral00;
+        cursor: grabbing;
+        border: 2px solid red;
         background: white;
         z-index: 2;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);

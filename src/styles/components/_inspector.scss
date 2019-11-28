@@ -1,0 +1,25 @@
+.inspector_toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+.inspector {
+    position: absolute;
+    right: 48px;
+    top: 48px;
+    padding: 16px;
+    @include elevateNormal;
+    background: rgba(0, 0, 0, 0.91);
+    border-radius: 24px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(0%) scale(0);
+    transition: transform 400ms $easingNormal;
+
+    &--active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0) scale(1);
+    }
+}

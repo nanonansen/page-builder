@@ -96,8 +96,6 @@ const Inspector = ({ styles, handleStylesUpdate, sectionId, isActive }) => {
         <div className={isActive ? "inspector inspector--active" : "inspector"}>
             {sectionStyles !== null &&
                 Object.entries(sectionStyles).map(([key, value]) => {
-                    console.log("sectionStyles", key);
-
                     if (key === "background") {
                         return (
                             <div key={key}>
@@ -112,36 +110,41 @@ const Inspector = ({ styles, handleStylesUpdate, sectionId, isActive }) => {
                             </div>
                         );
                     } else {
-                        return Object.entries(value).map(([k, v]) => {
-                            return (
-                                <div
-                                    key={k}
-                                    className="paddingInput"
-                                    name={key}
-                                >
-                                    <button
-                                        onClick={() =>
-                                            decrementValue(key, k, v)
-                                        }
-                                    >
-                                        -
-                                    </button>
-                                    <input
-                                        type="text"
-                                        name={k}
-                                        value={v}
-                                        onChange={handleChange}
-                                    />
-                                    <button
-                                        onClick={() =>
-                                            incrementValue(key, k, v)
-                                        }
-                                    >
-                                        +
-                                    </button>
-                                </div>
-                            );
-                        });
+                        return (
+                            <div>
+                                <label htmlFor="">{key}</label>
+                                {Object.entries(value).map(([k, v]) => {
+                                    return (
+                                        <div
+                                            key={k}
+                                            className="paddingInput"
+                                            name={key}
+                                        >
+                                            <button
+                                                onClick={() =>
+                                                    decrementValue(key, k, v)
+                                                }
+                                            >
+                                                -
+                                            </button>
+                                            <input
+                                                type="text"
+                                                name={k}
+                                                value={v}
+                                                onChange={handleChange}
+                                            />
+                                            <button
+                                                onClick={() =>
+                                                    incrementValue(key, k, v)
+                                                }
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        );
                     }
                 })}
         </div>

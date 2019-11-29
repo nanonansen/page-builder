@@ -20,8 +20,13 @@ const Section = props => {
         handleStylesUpdate
     } = props;
 
+    console.log("style", styles);
+    const { background, padding } = styles;
+    const styleObj = { ...background, ...padding };
+    console.log("styleObj", styleObj);
+
     return (
-        <section className="section" style={styles}>
+        <section className="section" style={styleObj}>
             <Button
                 className="inspector_toggle"
                 onClick={() => handleInspectorId(section.id)}
@@ -62,7 +67,7 @@ const Inspector = ({ styles, handleStylesUpdate, sectionId, isActive }) => {
     const handleColorChange = color => {
         console.log("onChangeComplete", color);
         const oldState = { ...sectionStyles };
-        oldState.backgroundColor = color.hex;
+        oldState.background.backgroundColor = color.hex;
         setSectionStyles(oldState);
         handleStylesUpdate(oldState, sectionId);
     };
@@ -72,17 +77,17 @@ const Inspector = ({ styles, handleStylesUpdate, sectionId, isActive }) => {
         setSectionStyles(oldState);
         handleStylesUpdate(oldState, sectionId);
     };
-    const incrementValue = (key, value) => {
+    const incrementValue = (parent, key, value) => {
         console.log("incrementValue");
         const oldState = { ...sectionStyles };
-        oldState[key] = parseInt(value) + 10;
+        oldState[parent][key] = parseInt(value) + 10;
         setSectionStyles(oldState);
         handleStylesUpdate(oldState, sectionId);
     };
-    const decrementValue = (key, value) => {
+    const decrementValue = (parent, key, value) => {
         console.log("incrementValue");
         const oldState = { ...sectionStyles };
-        oldState[key] = parseInt(value) - 10;
+        oldState[parent][key] = parseInt(value) - 10;
         setSectionStyles(oldState);
         handleStylesUpdate(oldState, sectionId);
     };
@@ -91,38 +96,52 @@ const Inspector = ({ styles, handleStylesUpdate, sectionId, isActive }) => {
         <div className={isActive ? "inspector inspector--active" : "inspector"}>
             {sectionStyles !== null &&
                 Object.entries(sectionStyles).map(([key, value]) => {
-                    console.log(key, value);
+                    console.log("sectionStyles", key);
 
-                    if (key === "backgroundColor") {
-                        return (
-                            <CirclePicker
-                                key={key}
-                                color={sectionStyles.backgroundColor}
-                                onChangeComplete={handleColorChange}
-                                colors={["#f44336", "#e91e63", "#9c27b0"]}
-                            />
-                        );
-                    } else {
+                    if (key === "background") {
                         return (
                             <div key={key}>
-                                <button
-                                    onClick={() => decrementValue(key, value)}
-                                >
-                                    -
-                                </button>
-                                <input
-                                    type="text"
-                                    name={key}
-                                    value={value}
-                                    onChange={handleChange}
+                                <label htmlFor="">{key}</label>
+                                <CirclePicker
+                                    color={
+                                        sectionStyles.background.backgroundColor
+                                    }
+                                    onChangeComplete={handleColorChange}
+                                    colors={["#f44336", "#e91e63", "#9c27b0"]}
                                 />
-                                <button
-                                    onClick={() => incrementValue(key, value)}
-                                >
-                                    +
-                                </button>
                             </div>
                         );
+                    } else {
+                        return Object.entries(value).map(([k, v]) => {
+                            return (
+                                <div
+                                    key={k}
+                                    className="paddingInput"
+                                    name={key}
+                                >
+                                    <button
+                                        onClick={() =>
+                                            decrementValue(key, k, v)
+                                        }
+                                    >
+                                        -
+                                    </button>
+                                    <input
+                                        type="text"
+                                        name={k}
+                                        value={v}
+                                        onChange={handleChange}
+                                    />
+                                    <button
+                                        onClick={() =>
+                                            incrementValue(key, k, v)
+                                        }
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            );
+                        });
                     }
                 })}
         </div>

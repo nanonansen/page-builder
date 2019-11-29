@@ -10,11 +10,15 @@ const initialData = {
                 }
             ],
             styles: {
-                backgroundColor: "#ffffff",
-                paddingTop: 0,
-                paddingRight: 0,
-                paddingBottom: 0,
-                paddingLeft: 0
+                background: {
+                    backgroundColor: "#ffffff"
+                },
+                padding: {
+                    paddingTop: 0,
+                    paddingRight: 0,
+                    paddingBottom: 0,
+                    paddingLeft: 0
+                }
             }
         },
         {
@@ -26,11 +30,15 @@ const initialData = {
                 }
             ],
             styles: {
-                backgroundColor: "#ffffff",
-                paddingTop: 0,
-                paddingRight: 0,
-                paddingBottom: 0,
-                paddingLeft: 0
+                background: {
+                    backgroundColor: "#ffffff"
+                },
+                padding: {
+                    paddingTop: 0,
+                    paddingRight: 0,
+                    paddingBottom: 0,
+                    paddingLeft: 0
+                }
             }
         }
     ],
@@ -47,11 +55,15 @@ const initialData = {
                     }
                 ],
                 styles: {
-                    backgroundColor: "#ffffff",
-                    paddingTop: 0,
-                    paddingRight: 0,
-                    paddingBottom: 0,
-                    paddingLeft: 0
+                    background: {
+                        backgroundColor: "#ffffff"
+                    },
+                    padding: {
+                        paddingTop: 0,
+                        paddingRight: 0,
+                        paddingBottom: 0,
+                        paddingLeft: 0
+                    }
                 }
             }
         ]
